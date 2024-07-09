@@ -1,0 +1,22 @@
+Nome: Adriano Adventures
+Preco: 19.00
+Quantidade em Estoque: 0
+Data de Lancamento: 99
+Quantidade Reservada: 0
+Genero: 0/02/2022
+Plataforma: PC
+Classificacao Indicativa: 18
+Nota: 10.00
+Modo de Jogo: Singlepla
+
+Nome: yer
+Preco: 89.00
+Quantidade em Estoque: 0
+Data de Lancamento: 23
+Quantidade Reservada: 0
+Genero: 3/08/2001
+Plataforma: PC
+Classificacao Indicativa: 10
+Nota: 7.00
+Modo de Jogo: Multiplay
+
