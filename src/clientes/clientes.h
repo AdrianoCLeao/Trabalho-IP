@@ -1,0 +1,2 @@
+FILE* criarBancoClientes();
+FILE* conectarBancoClientes();
