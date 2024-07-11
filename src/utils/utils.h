@@ -1,1 +1,1 @@
-char* lerString(char *textoInput);
+void lerString(char **string, char *textoInput);
