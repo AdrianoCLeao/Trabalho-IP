@@ -14,13 +14,13 @@ FILE* criarBancoClientes() {
             rewind(bancoClientes);
             fputs("Banco pronto para receber dados", bancoClientes);
             fclose(bancoClientes);
-            bancoClientes = fopen("clientes.txt", "a");
+            bancoClientes = fopen("clientes.txt", "a+");
             printf("Banco de clientes criado\n");
             return bancoClientes;
         }
     } else {
         fclose(bancoClientes);
-        bancoClientes = fopen("clientes.txt", "a");
+        bancoClientes = fopen("clientes.txt", "a+");
         return bancoClientes;
     }
 }
@@ -40,7 +40,7 @@ FILE* conectarBancoClientes() {
         }
     } else {
         fclose(bancoClientes);
-        bancoClientes = fopen("clientes.txt", "a");
+        bancoClientes = fopen("clientes.txt", "a+");
         printf("Conectado ao banco de clientes\n");
         return bancoClientes;
     }
