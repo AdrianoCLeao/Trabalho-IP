@@ -2,4 +2,3 @@
 
 FILE* criarBancoClientes();
 FILE* conectarBancoClientes();
-void criarCliente();    
