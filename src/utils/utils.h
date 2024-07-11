@@ -1,0 +1,1 @@
+char* lerString(char *textoInput);
