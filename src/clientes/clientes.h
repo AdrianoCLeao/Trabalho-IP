@@ -18,3 +18,4 @@ typedef struct cliente {
 FILE* criarBancoClientes();
 FILE* conectarBancoClientes();
 Cliente criarCliente();
+int encontrarCliente(char *cpfBusca, Cliente *cliente);

@@ -67,3 +67,45 @@ Cliente criarCliente() {
 
     return novoCliente;
 }
+
+int encontrarCliente(char *cpfBusca, Cliente *cliente) {
+    FILE *bancoClientes = conectarBancoClientes();
+    char buffer[3100];
+
+    while (fgets(buffer, sizeof(buffer), bancoClientes)) {
+        char *campo = strtok(buffer, ";");
+        if (!strcmp(cpfBusca, campo)) {
+            (*cliente).cpf = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).cpf, campo);                    
+
+            campo = strtok(NULL, ";");
+            (*cliente).nome = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).nome, campo);                    
+
+            campo = strtok(NULL, ";");
+            (*cliente).idade = atoi(campo);
+
+            campo = strtok(NULL, ";");
+            (*cliente).endereco.cep = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).endereco.cep, campo);                    
+
+            campo = strtok(NULL, ";");
+            (*cliente).endereco.bairro = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).endereco.bairro, campo);                    
+
+            campo = strtok(NULL, ";");
+            (*cliente).endereco.cidade = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).endereco.cidade, campo);                    
+
+            campo = strtok(NULL, ";");
+            (*cliente).endereco.estado = malloc(strlen(campo) * sizeof(char));
+            strcpy((*cliente).endereco.estado, campo);                    
+
+            return 1;
+        }
+    };
+
+    printf("Nao encontrado\n");
+
+    return 0;
+}
