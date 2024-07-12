@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-typedef struct endereco
-{
+typedef struct endereco {
     char *cep;
     char *bairro;
     char *cidade;
