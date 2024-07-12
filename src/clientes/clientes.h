@@ -14,7 +14,5 @@ typedef struct cliente {
     Endereco endereco; 
 } Cliente;
 
-FILE* criarBancoClientes();
-FILE* conectarBancoClientes();
 Cliente criarCliente();
 int encontrarCliente(char *cpfBusca, Cliente *cliente);

@@ -4,53 +4,8 @@
 #include "clientes.h"
 #include "../utils/utils.h"
 
-FILE* criarBancoClientes() {
-    FILE *bancoClientes = fopen("clientes.txt", "r");
-
-    if (bancoClientes == NULL) {
-        printf("Tentando criar novo banco de clientes...\n");
-        bancoClientes = fopen("clientes.txt", "w");
-        if (bancoClientes == NULL) {
-            printf("Erro ao criar um banco de clientes\n");
-            return NULL;
-        } else {
-            rewind(bancoClientes);
-            fputs("CPF;NOME;IDADE;CEP;BAIRRO;CIDADE;ESTADO", bancoClientes);
-            fclose(bancoClientes);
-            bancoClientes = fopen("clientes.txt", "a+");
-            printf("Banco de clientes criado\n");
-            return bancoClientes;
-        }
-    } else {
-        fclose(bancoClientes);
-        bancoClientes = fopen("clientes.txt", "a+");
-        return bancoClientes;
-    }
-}
-
-FILE* conectarBancoClientes() {
-    FILE *bancoClientes = fopen("clientes.txt", "r");
-
-    if (bancoClientes == NULL) {
-        printf("Erro ao conectar com o banco de clientes\n");        
-        bancoClientes = criarBancoClientes();
-        if (bancoClientes == NULL) {
-            printf("Nao foi possivel se conectar ao banco de clientes\n");
-            return(NULL);
-        } else {
-            printf("Conectado ao novo banco de clientes\n");
-            return bancoClientes;
-        }
-    } else {
-        fclose(bancoClientes);
-        bancoClientes = fopen("clientes.txt", "a+");
-        printf("Conectado ao banco de clientes\n");
-        return bancoClientes;
-    }
-}
-
 Cliente criarCliente() {
-    FILE *bancoClientes = conectarBancoClientes();
+    FILE *bancoClientes = conectarBanco("clientes.txt");
     Cliente novoCliente;
 
     lerString(&novoCliente.cpf, "CPF");
@@ -69,7 +24,7 @@ Cliente criarCliente() {
 }
 
 int encontrarCliente(char *cpfBusca, Cliente *cliente) {
-    FILE *bancoClientes = conectarBancoClientes();
+    FILE *bancoClientes = conectarBanco("clientes.txt");
     char buffer[3100];
 
     while (fgets(buffer, sizeof(buffer), bancoClientes)) {
