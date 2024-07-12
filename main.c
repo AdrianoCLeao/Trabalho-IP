@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "src/clientes/clientes.h"
 
 struct jogos {
     char nome[50];
@@ -14,19 +15,10 @@ struct jogos {
     char modo_jogo[15]; // Singleplayer, multiplayer
 };
 
-struct cliente {
-    char cpf[15];
-    char nome[50];
-    int idade;
-    char endereco[50]; 
-    int genero_favorito;
-    int qtd_reservados;
-    int historico;
-};
 
 struct estoque {
     struct jogos jogo[50];
-    struct cliente cliente[50];
+    Cliente cliente[50];
     int qtd_jogos;
 };
 
