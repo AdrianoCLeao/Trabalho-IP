@@ -15,7 +15,7 @@ FILE* criarBancoClientes() {
             return NULL;
         } else {
             rewind(bancoClientes);
-            fputs("Banco pronto para receber dados", bancoClientes);
+            fputs("CPF;NOME;IDADE;CEP;BAIRRO;CIDADE;ESTADO", bancoClientes);
             fclose(bancoClientes);
             bancoClientes = fopen("clientes.txt", "a+");
             printf("Banco de clientes criado\n");
