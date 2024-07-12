@@ -65,3 +65,26 @@ int encontrarCliente(char *cpfBusca, Cliente *cliente) {
 
     return 0;
 }
+
+void removerCliente(char *cpfRemover) {
+    FILE *bancoClientes = conectarBanco("clientes.txt");
+    FILE *novoBancoClientes = criarBanco("temp-clientes.txt", "CPF;NOME;IDADE;CEP;BAIRRO;CIDADE;ESTADO");
+
+    char buffer[3100];
+    for (int i = 0; fgets(buffer, sizeof(buffer), bancoClientes); i++) {
+        if (i == 0) {
+            continue;
+        }
+        char *campo = strtok(buffer, ";");
+        if(strcmp(campo, cpfRemover) != 0) {
+            Cliente clienteMantido;
+            encontrarCliente(campo, &clienteMantido);
+            fprintf(novoBancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", clienteMantido.cpf, clienteMantido.nome, clienteMantido.idade, clienteMantido.endereco.cep, clienteMantido.endereco.bairro, clienteMantido.endereco.cidade, clienteMantido.endereco.estado);
+        }
+    }
+
+    rename("clientes.txt", "backup-clientes.txt");
+    rename("temp-clientes.txt", "clientes.txt");
+    fclose(bancoClientes);
+    fclose(novoBancoClientes);
+}
