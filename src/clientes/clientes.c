@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "clientes.h"
+#include "../utils/utils.h"
 
 FILE* criarBancoClientes() {
     FILE *bancoClientes = fopen("clientes.txt", "r");
@@ -44,4 +47,23 @@ FILE* conectarBancoClientes() {
         printf("Conectado ao banco de clientes\n");
         return bancoClientes;
     }
+}
+
+Cliente criarCliente() {
+    FILE *bancoClientes = conectarBancoClientes();
+    Cliente novoCliente;
+
+    lerString(&novoCliente.cpf, "CPF");
+    lerString(&novoCliente.nome, "Nome");
+    printf("Idade: ");
+    scanf("%d", &novoCliente.idade);
+    lerString(&novoCliente.endereco.cep, "CEP");
+    lerString(&novoCliente.endereco.bairro, "Bairro");
+    lerString(&novoCliente.endereco.cidade, "Cidade");
+    lerString(&novoCliente.endereco.estado, "Estado");
+
+    fprintf(bancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", novoCliente.cpf, novoCliente.nome, novoCliente.idade, novoCliente.endereco.cep, novoCliente.endereco.bairro, novoCliente.endereco.cidade, novoCliente.endereco.estado);
+    fclose(bancoClientes);
+
+    return novoCliente;
 }

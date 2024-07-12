@@ -17,3 +17,4 @@ typedef struct cliente {
 
 FILE* criarBancoClientes();
 FILE* conectarBancoClientes();
+Cliente criarCliente();
