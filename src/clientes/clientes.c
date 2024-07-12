@@ -99,6 +99,7 @@ int encontrarCliente(char *cpfBusca, Cliente *cliente) {
 
             campo = strtok(NULL, ";");
             (*cliente).endereco.estado = malloc(strlen(campo) * sizeof(char));
+            campo[strcspn(campo, "\n")] = '\0';
             strcpy((*cliente).endereco.estado, campo);                    
 
             return 1;
