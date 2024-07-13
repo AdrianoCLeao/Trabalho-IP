@@ -17,3 +17,4 @@ typedef struct cliente {
 Cliente criarCliente();
 int encontrarCliente(char *cpfBusca, Cliente *cliente);
 void removerCliente(char *cpfRemover);
+void editarCliente(char *cpfEditar);

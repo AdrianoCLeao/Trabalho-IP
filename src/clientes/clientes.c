@@ -88,3 +88,48 @@ void removerCliente(char *cpfRemover) {
     fclose(bancoClientes);
     fclose(novoBancoClientes);
 }
+
+void editarCliente(char *cpfEditar) {
+    FILE *bancoClientes = conectarBanco("clientes.txt");
+    FILE *novoBancoClientes = criarBanco("temp-clientes.txt", "CPF;NOME;IDADE;CEP;BAIRRO;CIDADE;ESTADO");
+    int numEdicoes = 0;
+
+    char buffer[3100];
+    for (int i = 0; fgets(buffer, sizeof(buffer), bancoClientes); i++) {
+        if (i == 0) {
+            continue;
+        }
+        char *campo = strtok(buffer, ";");
+        Cliente clienteBanco;
+        encontrarCliente(campo, &clienteBanco);
+        if(strcmp(campo, cpfEditar) == 0) {
+            printf("Cliente encontrado: %s;%s;%d;%s;%s;%s;%s\n", clienteBanco.cpf, clienteBanco.nome, clienteBanco.idade, clienteBanco.endereco.cep, clienteBanco.endereco.bairro, clienteBanco.endereco.cidade, clienteBanco.endereco.estado);
+            Cliente clienteEdicao;
+
+            lerString(&clienteEdicao.cpf, "CPF");
+            lerString(&clienteEdicao.nome, "Nome");
+            printf("Idade: ");
+            scanf("%d", &clienteEdicao.idade);
+            lerString(&clienteEdicao.endereco.cep, "CEP");
+            lerString(&clienteEdicao.endereco.bairro, "Bairro");
+            lerString(&clienteEdicao.endereco.cidade, "Cidade");
+            lerString(&clienteEdicao.endereco.estado, "Estado");
+
+            fprintf(novoBancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", clienteEdicao.cpf, clienteEdicao.nome, clienteEdicao.idade, clienteEdicao.endereco.cep, clienteEdicao.endereco.bairro, clienteEdicao.endereco.cidade, clienteEdicao.endereco.estado);
+            numEdicoes++;
+        } else {
+            fprintf(novoBancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", clienteBanco.cpf, clienteBanco.nome, clienteBanco.idade, clienteBanco.endereco.cep, clienteBanco.endereco.bairro, clienteBanco.endereco.cidade, clienteBanco.endereco.estado);
+        }
+    }
+
+
+    if (numEdicoes == 0) {
+        remove("temp-clientes.txt");
+    } else {
+        rename("clientes.txt", "clientes-backup.text");
+        rename("temp-clientes.txt", "clientes.txt");
+    }
+
+    fclose(bancoClientes);
+    fclose(novoBancoClientes);
+}
