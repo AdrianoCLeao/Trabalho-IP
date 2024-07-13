@@ -4,8 +4,8 @@
 #include "clientes.h"
 #include "../utils/utils.h"
 
-Cliente criarCliente() {
-    FILE *bancoClientes = conectarBanco("clientes.txt");
+Cliente criarCliente(char *nomeArquivoBanco) {
+    FILE *bancoClientes = conectarBanco(nomeArquivoBanco);
     Cliente novoCliente;
 
     lerString(&novoCliente.cpf, "CPF");
@@ -104,18 +104,7 @@ void editarCliente(char *cpfEditar) {
         encontrarCliente(campo, &clienteBanco);
         if(strcmp(campo, cpfEditar) == 0) {
             printf("Cliente encontrado: %s;%s;%d;%s;%s;%s;%s\n", clienteBanco.cpf, clienteBanco.nome, clienteBanco.idade, clienteBanco.endereco.cep, clienteBanco.endereco.bairro, clienteBanco.endereco.cidade, clienteBanco.endereco.estado);
-            Cliente clienteEdicao;
-
-            lerString(&clienteEdicao.cpf, "CPF");
-            lerString(&clienteEdicao.nome, "Nome");
-            printf("Idade: ");
-            scanf("%d", &clienteEdicao.idade);
-            lerString(&clienteEdicao.endereco.cep, "CEP");
-            lerString(&clienteEdicao.endereco.bairro, "Bairro");
-            lerString(&clienteEdicao.endereco.cidade, "Cidade");
-            lerString(&clienteEdicao.endereco.estado, "Estado");
-
-            fprintf(novoBancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", clienteEdicao.cpf, clienteEdicao.nome, clienteEdicao.idade, clienteEdicao.endereco.cep, clienteEdicao.endereco.bairro, clienteEdicao.endereco.cidade, clienteEdicao.endereco.estado);
+            Cliente clienteEdicao = criarCliente("temp-clientes.txt");
             numEdicoes++;
         } else {
             fprintf(novoBancoClientes, "\n%s;%s;%d;%s;%s;%s;%s", clienteBanco.cpf, clienteBanco.nome, clienteBanco.idade, clienteBanco.endereco.cep, clienteBanco.endereco.bairro, clienteBanco.endereco.cidade, clienteBanco.endereco.estado);
