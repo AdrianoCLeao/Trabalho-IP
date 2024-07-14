@@ -9,6 +9,7 @@
 
 ## Estrutura de diretórios
 
+```
 root/
 |-- src/
 |   |-- utils/
@@ -21,3 +22,4 @@ root/
 |       |-- clientes.c
 |       |-- clientes.h
 |-- main.c
+```
