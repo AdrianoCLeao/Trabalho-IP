@@ -58,3 +58,13 @@ FILE* conectarBanco(char *nomeArquivoBanco) {
         return banco;
     }
 }
+
+void menu() {
+    printf("=== Controle de Estoque de Jogos ===\n");
+    printf("1. Cadastrar novo jogo\n");
+    printf("2. Encontrar jogo\n");
+    printf("3. Editar jogo\n");
+    printf("4. Verificar classificação indicativa\n");
+    printf("5. Sair\n");
+    printf("Escolha uma opção: ");
+}
