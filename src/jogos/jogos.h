@@ -13,7 +13,7 @@ typedef struct jogo {
     char *modo_jogo;
 } Jogo;
 
-Jogo criarJogo(const char *nomeArquivoBanco);
+Jogo criarJogo(char *nomeArquivoBanco);
 
 void encontrarJogo(const char *chave, const char *valorBusca, struct jogo **lista, int *count);
 
