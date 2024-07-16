@@ -57,8 +57,7 @@ void adicionarJogo(Jogo **jogos, int *count) {
 
     printf("Preço: ");
     scanf("%f", &novoJogo->preco);
-    getchar();
-    getchar();
+    setbuf(stdin, NULL); 
 
     printf("Gênero: ");
     fgets(novoJogo->genero, 50, stdin);
@@ -86,7 +85,6 @@ void adicionarJogo(Jogo **jogos, int *count) {
 
     (*count)++;
 
-    // Registrar a adição do jogo
     char registro[200];
     snprintf(registro, sizeof(registro), "%s - %d cópias adicionadas.", novoJogo->nome, qtdAdicionada);
     registrarTexto("registro.txt", registro);
@@ -110,7 +108,6 @@ void removerCopias(Jogo *jogos, int count) {
             jogos[i].qtd_estoque -= qtdRemover;
             if (jogos[i].qtd_estoque < 0) jogos[i].qtd_estoque = 0;
 
-            // Registrar a remoção de cópias
             char registro[200];
             snprintf(registro, sizeof(registro), "%s - %d cópias removidas.", jogos[i].nome, qtdRemover);
             registrarTexto("registro.txt", registro);
@@ -155,7 +152,6 @@ void gerarRelatorioPorData(Jogo *jogos, int count) {
     int i, j;
     printf("Relatorio por Data de Adicao:\n");
 
-    // Ordenar os jogos por data de adição
     for (i = 0; i < count - 1; i++) {
         for (j = i + 1; j < count; j++) {
             if (strcmp(jogos[i].data_adicao, jogos[j].data_adicao) > 0) {
