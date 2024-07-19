@@ -42,7 +42,7 @@ void adicionarJogo(Jogo **jogos, int *count) {
 
     *jogos = realloc(*jogos, (*count + 1) * sizeof(Jogo));
     if (*jogos == NULL) {
-        perror("Erro ao alocar memória");
+        perror("Erro ao alocar memoria");
         exit(EXIT_FAILURE);
     }
 
@@ -55,22 +55,22 @@ void adicionarJogo(Jogo **jogos, int *count) {
     fgets(novoJogo->nome, 100, stdin);
     novoJogo->nome[strcspn(novoJogo->nome, "\n")] = '\0';
 
-    printf("Preço: ");
+    printf("Preco: ");
     scanf("%f", &novoJogo->preco);
     setbuf(stdin, NULL); 
 
-    printf("Gênero: ");
+    printf("Genero: ");
     fgets(novoJogo->genero, 50, stdin);
     novoJogo->genero[strcspn(novoJogo->genero, "\n")] = '\0';
 
-    printf("Classificação Indicativa: ");
+    printf("Classificacao Indicativa: ");
     scanf("%d", &novoJogo->classificacao_indicativa);
     getchar();
 
     int qtdAdicionada;
     novoJogo->qtd_estoque = 0;
     
-    printf("Quantidade de cópias a adicionar: ");
+    printf("Quantidade de copias a adicionar: ");
     scanf("%d", &qtdAdicionada);
     getchar();
 
@@ -86,7 +86,7 @@ void adicionarJogo(Jogo **jogos, int *count) {
     (*count)++;
 
     char registro[200];
-    snprintf(registro, sizeof(registro), "%s - %d cópias adicionadas.", novoJogo->nome, qtdAdicionada);
+    snprintf(registro, sizeof(registro), "%s - %d copias adicionadas.", novoJogo->nome, qtdAdicionada);
     registrarTexto("registro.txt", registro);
 }
 
@@ -95,11 +95,11 @@ void removerCopias(Jogo *jogos, int count) {
     char nome[100];
     int qtdRemover;
 
-    printf("Nome do Jogo a remover cópias: ");
+    printf("Nome do Jogo a remover copias: ");
     fgets(nome, sizeof(nome), stdin);
     nome[strcspn(nome, "\n")] = '\0';
 
-    printf("Quantidade de cópias a remover: ");
+    printf("Quantidade de copias a remover: ");
     scanf("%d", &qtdRemover);
     getchar();
 
@@ -109,14 +109,14 @@ void removerCopias(Jogo *jogos, int count) {
             if (jogos[i].qtd_estoque < 0) jogos[i].qtd_estoque = 0;
 
             char registro[200];
-            snprintf(registro, sizeof(registro), "%s - %d cópias removidas.", jogos[i].nome, qtdRemover);
+            snprintf(registro, sizeof(registro), "%s - %d copias removidas.", jogos[i].nome, qtdRemover);
             registrarTexto("registro.txt", registro);
 
             return;
         }
     }
 
-    printf("Jogo não encontrado.\n");
+    printf("Jogo nao encontrado.\n");
 }
 
 void procurarJogoPorNome(Jogo* lista, int count, const char* nome) {
@@ -126,14 +126,14 @@ void procurarJogoPorNome(Jogo* lista, int count, const char* nome) {
         if (strcmp(lista[i].nome, nome) == 0) {
             printf("Jogo encontrado:\n");
             printf("Nome: %s\n", lista[i].nome);
-            printf("Preço: %.2f\n", lista[i].preco);
+            printf("Preco: %.2f\n", lista[i].preco);
             printf("Quantidade em Estoque: %d\n", lista[i].qtd_estoque);
-            printf("Gênero: %s\n", lista[i].genero);
-            printf("Classificação Indicativa: %d\n", lista[i].classificacao_indicativa);
+            printf("Genero: %s\n", lista[i].genero);
+            printf("Classificacao Indicativa: %d\n", lista[i].classificacao_indicativa);
             return;
         }
     }
-    printf("Jogo não encontrado.\n");
+    printf("Jogo nao encontrado.\n");
 }
 
 void gerarRelatorioPorCategoria(Jogo* jogos, int count, const char* categoria, const char* valor) {
@@ -183,7 +183,7 @@ int main() {
     system("cls");
 
     do {
-        printf("1. Adicionar Jogo\n2. Remover Cópias de Jogo\n3. Consultar jogo\n4. Gerar relatorio por categoria\n5. Gerar relatorio por data\n6. Sair\nEscolha uma opção: ");
+        printf("1. Adicionar Jogo\n2. Remover Copias de Jogo\n3. Consultar jogo\n4. Gerar relatorio por categoria\n5. Gerar relatorio por data\n6. Sair\nEscolha uma opcao: ");
         scanf("%d", &opcao);
         getchar(); 
 
@@ -214,7 +214,7 @@ int main() {
                 printf("Saindo...\n");
                 break;
             default:
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opcao invalida! Tente novamente.\n");
         }
     } while (opcao != 6);
 

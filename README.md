@@ -1,7 +1,4 @@
-# Essa merda ta funcionando tudo que foi pedido
-
-## Ainda falta:
-To c um problemao na hora de ler a string de genero, deve ser um detalhe na leitura q eu fiz merda e nao sei onde ta o erro. Fora isso ta tudo certo.
+# Sistema de estoque de jogos
 
 ## Funções
 
