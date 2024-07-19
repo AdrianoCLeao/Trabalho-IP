@@ -16,7 +16,7 @@ typedef struct jogo {
 void registrarTexto(const char *arquivo, const char *texto) {
     FILE *fp = fopen(arquivo, "a");
     if (fp == NULL) {
-        perror("Erro ao abrir o arquivo");
+        perror("Erro ao abrir o arquivo ");
         exit(EXIT_FAILURE);
     }
 
